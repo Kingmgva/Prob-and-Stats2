@@ -10,11 +10,11 @@ import org.junit.Test;
 
 public class TestStatsLibrary {
 	/**
-	 * This method creates the test variable and calls the testCases method that was made inside stats library
+	 * This method creates the test variable and calls the testCases method that was made inside stats library 2
 	 * @param args
 	 */
 	public static void main(String[]args) {
-		StatsLibrary test = new StatsLibrary();
+		StatsLibrary2 test = new StatsLibrary2();
 		test.testCases();
 	}
 }

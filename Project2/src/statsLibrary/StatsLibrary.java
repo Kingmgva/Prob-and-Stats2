@@ -490,51 +490,6 @@ public class StatsLibrary {
 		return result;
 	}
 	/**
-	 * This method finds the probability of events happening a certain amount of time, We use the information given which is the average, lambda, and y. We plug that into the formula. That formula results in the probability.
-	 * @param lambda - rate or the average of an event happening
-	 * @param y - number of what we want to find probability of 
-	 * @return result - Use the rate, which is lambda, to input into formula and find numerator and denominator, which then results in an answer from numerator/denominator 
-	 */
-	public double poissonDist(double lambda, double y) {
-		double numerator = (Math.pow(lambda, y))*Math.pow(Math.E,-lambda);
-		double denominator = factorial(y);
-		double result = numerator/denominator;
-		return result;
-	}
-	/**
-	 * This just returns what is given because that is the expected. The way to find average is by getting the total number of events and dividing by the number of units.
-	 * @param lambda - the rate/average times an event occurs
-	 * @return lambda - returns the rate/average
-	 */
-	public double expectedPoisson(double lambda) {
-		return lambda;
-	}
-	/**
-	 * This just returns what is given because that is the variance. The way to find average is by getting the total number of events and dividing by the number of units.
-	 * @param lambda - the rate/average times an event occurs
-	 * @return lambda - returns the rate/average
-	 */
-	public double varPoisson(double lambda) {
-		return lambda;
-	}
-	/**
-	 * This method can be used to find the lower bound for the probability that a random variable is within the interval
-	 * @param k - number found after getting the within number from a data set and dividing by the standard deviation
-	 * @param greaterThan - True if P(|Y − μ| < kσ ) ≥ 1 − 1/k^2
-	 * @return result - depending on the equation used, you will get a result based on that formula
-	 */
-	public double TchebysheffTheorem(double k, boolean greaterThan){
-		double result;
-		if (greaterThan) {
-			result = 1-(1/Math.pow(k,2));
-			return result;
-		}
-		else {
-			result = 1/Math.pow(k,2);
-			return result;
-		}
-	}
-	/**
 	 * The test cases for each method that uses the sample arrays initialized at start of program and numbers I inputed from homework problems
 	 */
 	public void testCases() {
@@ -574,14 +529,6 @@ public class StatsLibrary {
 		
 		System.out.println("The negative binomial distribution is: " + test.negativeBinomialDistribution(5,3,.2));
 		System.out.println("The expected negative binomial distribution: " + test.getExpectedNBD(5,3,.2));
-		System.out.println("The variance for negative binomial distribution is: " + test.getVarNBD(5,3,.2));
-		
-		System.out.println("The poisson distribution is: " + test.poissonDist(6, 5));
-		System.out.println("The expected poisson distribution is: " + test.expectedPoisson(6));
-		System.out.println("The variance for poisson distribution is: " + test.varPoisson(6));
-		
-		System.out.println("The Tchebysheff Theorem is: " + test.TchebysheffTheorem(2, true));
-		System.out.println("The Tchebysheff Theorem is: " + test.TchebysheffTheorem(2, false));
-		
+		System.out.println("The variance for negative binomial distribution is: " + test.getVarNBD(5,3,.2));	
 	}
 }
