@@ -1,5 +1,9 @@
 package Smoother;
-
+/**
+ * This method grabs the salted data from the Salter class and gets the average of the y values around the index we are looking at to smooth the messed up data and fix it as accurate as possible to the original data values.
+ * 
+ * @author Melvin Vazquez
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,12 +15,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Smoothing {
+	/**
+	 * All the variables and arraylists I used throughout the class
+	 */
 	private ArrayList<Double> xPoints = new ArrayList<Double>();
 	private ArrayList<Double> yPoints = new ArrayList<Double>();
 	private ArrayList<Double> avgYPoints = new ArrayList<Double>();
 	private int num;
 	private int smootherNumOfTimes;
 	Scanner userInput = new Scanner(System.in);
+	/**
+	 * This method is used to grab the csv file from the salter class and input the values into the two arraylists that I made for the x and y values.
+	 */
 	public void getData() {
 		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//saltedGraph.csv/";
 		String line = "";
@@ -42,6 +52,11 @@ public class Smoothing {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This method use a triple for loop to get the y points inside the messed up data and find the average from the surrounding y values and put it in the arraylist for the average found. We do that for all the values and after we finish we replace the values of the messed up data with the smoothed ones. Then we empty out the arraylist holding the average of the points. After that depending on how many times we have to smooth the data, we repeat the cycle.
+	 * @param windowVal - the number of iterations we go left and right from the index we are looking at 
+	 * @param smoothingTimes - the amount of times we smooth the data 
+	 */
 	public void smoothingData(int windowVal, int smoothingTimes){
 		try {
 			for(int i=0; i<smoothingTimes; i++) {
@@ -66,6 +81,9 @@ public class Smoothing {
 		}
 		smoothingCSV();
 	}
+	/**
+	 * This method gets the user input for how many values they would like to iterate to left and right from index we are looking at and how many times they want to smooth the data. Handles misinputs in case a number is not inputted. Then it calls the smoothing data method.
+	 */
 	public void setRangeAndTime() {
 		boolean dataGotten = false;
 		System.out.println("Please set the window value and number of times you would like to smooth the data");
@@ -85,6 +103,9 @@ public class Smoothing {
 		}
 		smoothingData(num, smootherNumOfTimes);		
 	}
+	/**
+	 * This method grabs the finished smoothed y points and inputs it into a new csv file with the x points from the salter class, which has not changed from the original
+	 */
 	public void smoothingCSV() {
 		try {
 			File csvFile = new File("smoothedGraph.csv");
@@ -98,6 +119,9 @@ public class Smoothing {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This method is just an organizer that calls the methods in the order it is supposed to be called in, makes it easier in the tester class.
+	 */
 	public void run() {
 		getData();
 		setRangeAndTime();
