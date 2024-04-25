@@ -10,7 +10,7 @@ public class TestSmoothing {
 
 	public static void main(String[]args) {
 		Smoothing test = new Smoothing();
-		//test.run();
+		test.run();
 	}
 
 }

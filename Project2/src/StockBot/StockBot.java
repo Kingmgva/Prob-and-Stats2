@@ -15,12 +15,12 @@ public class StockBot {
 		for(int i = 0; i<=nPeriod; i++){
 			for(int j = i+1; j<=nPeriod; j++) {
 				if((closePrices[j] - closePrices[i])<0) {
-					AvgU++;
+					AvgD++;
 				}
-				else if((j-i)==0) {
+				else if((closePrices[j]-closePrices[i])==0) {
 				}
 				else {
-					AvgD++;
+					AvgU++;
 				}
 			}
 		}
