@@ -1,3 +1,5 @@
+%The calls and variables stay the same just added more variables for window value, and how many times the data gets smoothed.
+%Make a variable that is the same as y that is put into the loop because the values inside get updated everytime the loop occurs
 saltedData = csvread("octaveSalter.csv")
 
 x = saltedData(:,1)
@@ -7,6 +9,7 @@ smoothedY = y
 windowVal = 3
 smoothingTimes = 3
 
+%Same formula from the one in Java just translated in the format for octave
 for i = 1:smoothingTimes
   for j = 1:length(y)
     count = 0
@@ -20,7 +23,7 @@ for i = 1:smoothingTimes
     smoothedY(j) = round(avgTotal/count)
   endfor
 endfor
-
+%Same as the other two just with the new y value and updated names
 plot(x, smoothedY)
 grid on
 xlabel = ("x-Values")
