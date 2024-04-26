@@ -60,11 +60,11 @@ public class Smoothing {
 	public void smoothingData(int windowVal, int smoothingTimes){
 		try {
 			for(int i=0; i<smoothingTimes; i++) {
-				double y = 0;
-				int count = 0;
 				for(int j = 0; j<yPoints.size();j++){
+					double y = 0;
+					int count = 0;
 					for (int k = j-windowVal; k<=j+windowVal; k++) {
-						if(k > 0 && k < yPoints.size()) {
+						if(k >= 0 && k < yPoints.size()) {
 							y += yPoints.get(k);
 							count++;
 						}
