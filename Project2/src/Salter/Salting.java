@@ -46,7 +46,7 @@ public class Salting {
 	 * I followed this video to understand how to get the csv file and read it. https://www.youtube.com/watch?v=-Aud0cDh-J8
 	 */
 	public void setArrayList() {
-		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//dataPlotter.csv/";
+		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//CSVs//dataPlotter.csv/";
 		String line = "";
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(path));

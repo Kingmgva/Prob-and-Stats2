@@ -28,7 +28,7 @@ public class Smoothing {
 	 * This method is used to grab the csv file from the salter class and input the values into the two arraylists that I made for the x and y values.
 	 */
 	public void getData() {
-		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//saltedGraph.csv/";
+		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//CSVs//saltedGraph.csv/";
 		String line = "";
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(path));

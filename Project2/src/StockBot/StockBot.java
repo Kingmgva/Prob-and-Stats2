@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StockBot {
+	//These Variables are for the MA trend line and RSI formula
 	private ArrayList<Double> originalClosingPrice = new ArrayList<Double>();
 	private ArrayList<Double> closingPrices = new ArrayList<Double>();
 	private ArrayList<Double> closingPricesAverage = new ArrayList<Double>();
@@ -22,6 +23,20 @@ public class StockBot {
 	private int smoothingTimes = 1;
 	private int nPeriodWeekly = 14;
 	
+	//These Variables are for the user and stockbot
+	private double balance;
+	private int stockShares;
+	
+	
+	public StockBot(double initalBalance) {
+		
+	}
+	public double loadedData() {
+		return 1;
+	}
+	public int tradeEvaluator() {
+		return 0;
+	}
 	public void relativeStrengthIndex() {
 		RSI = 100 - 100/(1+RS);
 		RSIValues.add(RSI);
