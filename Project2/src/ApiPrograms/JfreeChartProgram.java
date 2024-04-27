@@ -12,18 +12,21 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
-import org.apache.commons.math4.legacy.stat.descriptive.DescriptiveStatistics;
-
-public class ApacheAndJfreeProgram{
+/**
+ * This class uses JfreeCharts as a way to create a frame chart that shows the graph for all three datasets. The datasets shown in the graph is the one for Plotter, Salter, and Smoother.
+ * @author Melvin Vazquez
+ *
+ */
+public class JfreeChartProgram{
 	private XYSeriesCollection dataset = new XYSeriesCollection();
 	private XYSeries plotterData;
 	private XYSeries salterData;
 	private XYSeries smootherData;
 	/**
-	 * 
-	 * @param min
-	 * @param max
-	 * @param increments
+	 * This method uses the same logic as the one created in the first plotter class in Java, the only difference is the use of a XY data set. After all data is received, we add the series to a XY collection that holds multiple series
+	 * @param min - first x to start at
+	 * @param max - last x to end at
+	 * @param increments - increment to the next x depending on user input
 	 */
 	public void plotterAPI(double min, double max, double increments) {
 		double y;
@@ -35,6 +38,11 @@ public class ApacheAndJfreeProgram{
 		dataset.addSeries(plotterData);
 		plotterCSV();
 	}
+	/**
+	 * This method salts the data from the plotter dataset and we get the values in each through a for loop and through built in methods. After that we use a randomizer to add/subtract a number in a range given by user. Once loop is finished the series is added to the dataset
+	 * @param min - the minimum value they would like the data to be added to or subtracted from
+	 * @param max - the maximum value they would like the data to be added to or subtracted from
+	 */
 	public void saltedData(double min, double max) {
 		 salterData = new XYSeries("Salted Data");
 		 Random random = new Random();
@@ -57,6 +65,11 @@ public class ApacheAndJfreeProgram{
 			dataset.addSeries(salterData);
 			salterCSV();
 	}
+	/**
+	 * This method is used to fix the data and try to fix it to be as close to the original, Again we use XY series and dataset, once we get results we add to the smoother data series and add that series to the collection
+	 * @param windowVal - how many values the user wants to visit left and right from index 
+	 * @param smoothingTimes - how many times the data gets smoothed
+	 */
 	public void smoothedData(int windowVal, int smoothingTimes) {
 		smootherData = new XYSeries("Smoothed Data");
 		double result;
@@ -83,7 +96,7 @@ public class ApacheAndJfreeProgram{
 		}
 	}
 	/**
-	 * 
+	 * This creates the CSV for the Plotter dataset
 	 */
 	public void plotterCSV() {
 		try {
@@ -98,6 +111,9 @@ public class ApacheAndJfreeProgram{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This creates the CSV for the Salter dataset
+	 */
 	public void salterCSV() {
 		try {
 			File csvFile = new File("SalterAPI.csv");
@@ -111,6 +127,9 @@ public class ApacheAndJfreeProgram{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This method creates the Smoother CSV with the smoother dataset
+	 */
 	public void smootherCSV() {
 		try {
 			File csvFile = new File("SmootherAPI.csv");
@@ -125,7 +144,7 @@ public class ApacheAndJfreeProgram{
 		}
 	}
 	/**
-	 * This program is getting the bounds from user input. Got it from my java plotter class.
+	 * This program is getting the bounds and range from user input. Got it from my java plotter class.
 	 */
 	public void boundsAndRange() {
 		double start;
@@ -174,7 +193,7 @@ public class ApacheAndJfreeProgram{
 		}
 	}
 	/**
-	 * 
+	 * This class is what creates the frame where the Plotter, Salter, and Smoother get graphed and plotted. 
 	 */
 	public void XYLineChart() {
 		 String chartTitle = "API Chart";
@@ -182,7 +201,7 @@ public class ApacheAndJfreeProgram{
 		 String yAxisLabel = "Y";
 		JFreeChart chart = ChartFactory.createXYLineChart(chartTitle,
 		        xAxisLabel, yAxisLabel, dataset, PlotOrientation.VERTICAL, true, true, false);
-		ChartFrame frame = new ChartFrame("PSS Plot", chart);
+		ChartFrame frame = new ChartFrame("Plotter, Salter, and Smoother Plot", chart);
 		frame.pack();
 		frame.setVisible(true);
 	}

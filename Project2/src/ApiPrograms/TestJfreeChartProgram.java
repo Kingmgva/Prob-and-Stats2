@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestApacheAndJfreeProgram {
+public class TestJfreeChartProgram {
 
 	@Test
 	public static void main(String[]args) {
-		ApacheAndJfreeProgram test = new ApacheAndJfreeProgram();
+		JfreeChartProgram test = new JfreeChartProgram();
 		test.boundsAndRange();
 		test.XYLineChart();
 	}
