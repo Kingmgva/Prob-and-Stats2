@@ -55,6 +55,7 @@ public class ApacheAndJfreeProgram{
 			}
 			while(count != plotterData.getItemCount());
 			dataset.addSeries(salterData);
+			salterCSV();
 	}
 	public void smoothedData(int windowVal, int smoothingTimes) {
 		smootherData = new XYSeries("Smoothed Data");
@@ -74,6 +75,7 @@ public class ApacheAndJfreeProgram{
 					smootherData.add(salterData.getDataItem(j).getX(),result);
 				}
 				dataset.addSeries(smootherData);
+				smootherCSV();
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
