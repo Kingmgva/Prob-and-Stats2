@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * This class is created to get the MA trend line and RSI. Through those two values we use it to determine the buy and sell points in stocks. We want to use those values check stock data, figure out whether it is on the rise, downhill, or steady and depending on what it returns we give advise to user to buy, sell, or do nothing. At the end we calculate total net worth after a year.
+ * @author Melvin Vazquez
+ *
+ */
 public class StockBot {
 	//These Variables are for the MA trend line and RSI formula
 	private ArrayList<Double> originalClosingPrice = new ArrayList<Double>();
@@ -37,11 +41,17 @@ public class StockBot {
 	public int tradeEvaluator() {
 		return 0;
 	}
+	/**
+	 * This gets the RSI value after relative strength is found out. We add that value to the RSIValues ArrayList and then call RSIGraph method
+	 */
 	public void relativeStrengthIndex() {
 		RSI = 100 - 100/(1+RS);
 		RSIValues.add(RSI);
 		RSIGraph();
 	}
+	/**
+	 * This calculates the average up and down in a period set at the top of the code, after we get the result and add it to either up and down we divide by the period for each and call the relativeStrength() method
+	 */
 	public void averageDownAndUp() {
 		double up = 0;
 		double down = 0;
@@ -61,12 +71,18 @@ public class StockBot {
 		System.out.println(avgD);
 		relativeStrength();
 	}
+	/**
+	 * This method checks that avgD isn't 0 and if not then it divided avgU with avgD and gets the RS value. This method then calls the relativeStrengthIndex() method
+	 */
 	public void relativeStrength() {
 		if(avgD != 0) {
 			 RS = avgU / avgD;
 			 relativeStrengthIndex();
 		}
 	}
+	/**
+	 * This puts the RSI value into a csv and the dates that were looked at during that time 
+	 */
 	public void RSIGraph() {
 		try {
 			File csvFile = new File("RSI.csv");
@@ -80,6 +96,9 @@ public class StockBot {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This is a copy from my salter/smoothing classes that gets the path of the stock csv and sets values to its corresponding ArrayList. At the end this method puts the original closing price inside a different ArrayList since the other one will be used in smoothingData() and will be edited. Calls smoothing CSV at the end
+	 */
 	public void getData() {
 		String path = "C://Users//melvi//eclipse-workspace//Git//Prob-and-Stats2//Project2//src//StockBot//AMDWeeklyStock.csv/";
 		String line = "";
@@ -108,6 +127,9 @@ public class StockBot {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This is the same code as my smoothing class for smoothing the data, the only difference is the names of the ArrayList sizes. We just changed the variables from  smoothing class to the variables pertaining to this class 
+	 */
 	public void smoothingData(){
 		try {
 			for(int i=0; i<smoothingTimes; i++) {
@@ -131,6 +153,9 @@ public class StockBot {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This gets the average trend line by using the smoothed closing price data and originalClosing price data to see where the trend is moving in that period
+	 */
 	public void smoothingCSV() {
 		try {
 			File csvFile = new File("averageTrendLine.csv");
@@ -144,6 +169,9 @@ public class StockBot {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This organizes the code a bit more and runs the programs in the order I want
+	 */
 	public void run() {
 		getData();
 		averageDownAndUp();
